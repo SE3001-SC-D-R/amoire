@@ -6,19 +6,30 @@
 //const express = require('express')
 import express from 'express'; // <-- Module Style import
 import bodyParser from 'body-parser';
-
+import mongoose from 'mongoose'
+import cors from 'cors'
 // Importing user route
-import router from './routes/users.js';
+
+import router from './routes/product.js';
 // const router = require('router')
 
 // const bodyParser = require('body-parser')
 
 const app = express()
-const port = 3001
+const port = process.env.PORT || 3001;
 
-app.use(bodyParser.json())
+
+app.use(bodyParser.json({limit:"30mb", extended:true}))
+app.use(bodyParser.urlencoded({limit:"30mb", extended:true}))
+app.use(cors())
+
+const connectionURL = 'mongodb+srv://saraq268:9tYapj8m23BXRB2N@cluster0.l2i8oag.mongodb.net/test'
+
+mongoose.connect(connectionURL)
+
+
 // Adding a Router
-app.use('/users', router);
+app.use('/product', router);
 
 app.get('/', (req, res) => {
     res.send('Hello Universe!')
