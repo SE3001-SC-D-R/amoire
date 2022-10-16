@@ -1,5 +1,7 @@
 import React from 'react'
 import './App.css';
+import Products from './Products/products';
+import Form from './Form/form';
 import icon from './images/account.jpg'
 import SideNav from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
@@ -15,12 +17,12 @@ function App() {
           </AppBar>
           <Grow in>
             <Container>
-              <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+              <Grid container-justify="space-between" alignItems="stretch" spacing={3}>
                 <Grid item xs={12} sm={7}>
-
+                  <Form/>
                 </Grid>
                 <Grid item xs={12} sm={7}>
-                  
+                  <Products/>
                 </Grid>
               </Grid>
             </Container>
