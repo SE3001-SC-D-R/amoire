@@ -11,9 +11,8 @@ export const getProduct = async (req,res) => {
 }
 
 export const createProduct = async (req,res) => {
-    const prod = req.body
-    const newProduct = new product(prod)
-
+    await product.remove({});
+    const createdProduct = await product.insertMany
     try {
         await newProduct.save()
         res.status(201).json(newProduct)
