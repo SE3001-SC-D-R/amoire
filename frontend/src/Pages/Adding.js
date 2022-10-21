@@ -1,15 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 
-export default function Adding() {
+const Adding = () => {
+
+    const[product, setProduct] = useState({
+        Name: "",
+		url: "",
+		Category: "",
+		Price: 0,
+		stock: 0,
+		Description: "",
+		selectedImage: "",
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newProduct = {
+            Name: product.Name,
+			url: product.url,
+			Category: "Chair",
+			Price: product.Price,
+			stock: product.stock,
+			Description: product.Description,
+			selectedImage: product.selectedImage,
+        }
+
+        Axios.post('/create', newProduct)
+        .then(res => console.log(res.data))
+
+        setProduct({
+			Name: "",
+			url: "",
+			Category: "",
+			Price: 0,
+			stock: 0,
+			Description: "",
+			selectedImage: "",
+        });
+
+		alert('Product Added!')
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setProduct(oldProd => {
+            return {
+                ...oldProd,
+                [name]: value
+            }
+        })
+    }
+
+
 
     return (
         <React.Fragment>
-
-		<nav className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" >
-			<div className="container">
-				<a className="navbar-brand" href="index.html">armoire<span>.</span></a>
-			</div>
-		</nav>
 
 		<div className="untree_co-section">
 		    <div className="container">
@@ -20,7 +66,7 @@ export default function Adding() {
 		            <div className="form-group row">
 		              <div className="col-md-12">
 		                <label for="c_address" className="text-black">Product Name <span className="text-danger">*</span></label>
-		                <input type="text" className="form-control" id="c_address" name="c_address" placeholder="Enter the name of your product"/>
+		                <input type="text" className="form-control" id="c_address" name="Name" value={product.Name} required onChange={handleChange} placeholder="Enter the name of your product"/>
 		              </div>
 		            </div>
 
@@ -41,11 +87,23 @@ export default function Adding() {
 		            <div className="form-group row">
 		              <div className="col-md-6">
 		                <label for="c_state_country" className="text-black">Product Price <span className="text-danger">*</span></label>
-		                <input type="text" className="form-control" id="c_state_country" name="c_state_country"/>
+		                <input type="text" className="form-control" id="c_state_country" name="Price" value={product.Price} required 
+                    onChange={handleChange}/>
 		              </div>
 		              <div className="col-md-6">
 		                <label for="c_postal_zip" className="text-black">Product Stock <span className="text-danger">*</span></label>
-		                <input type="text" className="form-control" id="c_postal_zip" name="c_postal_zip"/>
+		                <input type="text" className="form-control" id="c_postal_zip"name="stock" value={product.stock} required 
+                    onChange={handleChange}/>
+		              </div>
+		            </div>
+
+					<br></br>
+
+					<div className="form-group row">
+		              <div className="col-md-12">
+		                <label for="c_address" className="text-black">Product Image URL <span className="text-danger">*</span></label>
+		                <input type="text" className="form-control" id="c_address"  placeholder="Enter the name of your product" name="url" value={product.url} required 
+                    onChange={handleChange}/>
 		              </div>
 		            </div>
 
@@ -53,14 +111,15 @@ export default function Adding() {
 
 		            <div className="form-group">
 		              <label for="c_order_notes" className="text-black">Description</label>
-		              <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" className="form-control" placeholder="Enter product description here..."></textarea>
+		              <textarea id="c_order_notes" cols="30" rows="5" className="form-control"name="Description" value={product.Description} required 
+                    onChange={handleChange} placeholder="Enter product description here..."></textarea>
 		            </div>
 		          </div>
 		        </div>
 		      </div>
 		    </div>
 			<br></br>
-			<button className="buttons">Add to Inventory</button>
+			<button className="buttons" onClick={handleSubmit}>Add to Inventory</button>
 		  </div>
 
 		  <footer class="footer-section">
@@ -78,3 +137,5 @@ export default function Adding() {
         </React.Fragment>
     )
 }
+
+export default Adding

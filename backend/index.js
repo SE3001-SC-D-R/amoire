@@ -1,48 +1,32 @@
-/**
- * This is a basic starting point of the assignment
- * Modify the code according to your own needs and requirements
- */
+ /**
+* This is a basic starting point of the assignment
+* Modify the code according to your own needs and requirements
+*/
 
-//const express = require('express')
 import express from 'express'; // <-- Module Style import
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose'
-import cors from 'cors'
-// Importing user route
+import mongoose from 'mongoose';
 
-import router from './routes/product.js';
-// const router = require('router')
+// // Importing route
+import productRouter from './routes/productRoutes.js';
 
-// const bodyParser = require('body-parser')
-
-const app = express()
-const port = process.env.PORT || 3001;
-
-
-app.use(bodyParser.json({limit:"30mb", extended:true}))
-app.use(bodyParser.urlencoded({limit:"30mb", extended:true}))
-app.use(cors())
-
-const connectionURL = 'mongodb+srv://saraq268:4n4XSMe1IE8vukPN@cluster0.l2i8oag.mongodb.net/?retryWrites=true&w=majority'
-
-mongoose.connect(connectionURL)
+const connectionURL = 'mongodb+srv://root:root@cluster0.l2i8oag.mongodb.net/armoire?retryWrites=true&w=majority'
+mongoose
+.connect(connectionURL)
+.then(() => console.log("Mongodb connected to - successfully!"))
+.catch((err) => {
+    console.log(err);
+  });
 
 
-// Adding a Router
-app.use('/product', router);
+ const app = express()
+ const port = process.env.PORT || 3001;
 
-app.get('/', (req, res) => {
-    res.send('Hello Universe!')
-})
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/todos', (req, res) => {
-    res.send('A list of todo items will be returned')
-})
+ app.use('/getProducts', productRouter);
+ app.use('/create', productRouter);
 
-app.post('/', (req, res) => {
-    console.log(req.body)
-    res.send('Posting a Request')
-})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

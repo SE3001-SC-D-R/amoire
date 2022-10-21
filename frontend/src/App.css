@@ -13,7 +13,7 @@
   padding-top: 0.2in;
   height: 150px;
   width: 850px;
-  z-index:0;
+  z-index: 0;
 }
 
 .account {
@@ -68,8 +68,14 @@ div.content {
     height: auto;
     position: relative;
   }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+
+  .sidebar a {
+    float: left;
+  }
+
+  div.content {
+    margin-left: 0;
+  }
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
@@ -105,6 +111,7 @@ div.content {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
