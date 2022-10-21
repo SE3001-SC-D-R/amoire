@@ -23,7 +23,7 @@ app.use(bodyParser.json({limit:"30mb", extended:true}))
 app.use(bodyParser.urlencoded({limit:"30mb", extended:true}))
 app.use(cors())
 
-const connectionURL = ''
+const connectionURL = 'mongodb+srv://saraq268:4n4XSMe1IE8vukPN@cluster0.l2i8oag.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose.connect(connectionURL)
 

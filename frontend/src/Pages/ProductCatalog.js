@@ -1,8 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 
 export default function ProductCatalog() {
-  return (
+
+	let navigate = useNavigate();
+	function addProduct() {
+		navigate('/adding')
+	}
+
+	return (
     <React.Fragment>
+		
 		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">armoire<span>.</span></a>
@@ -27,13 +35,15 @@ export default function ProductCatalog() {
 				</div>
 			</div>		
 		</nav>
+		<button class = "button" onClick={addProduct}>Add New Product</button>
+
 
 		<div class="untree_co-section product-section before-footer-section">
 		    <div class="container">
 		      	<div class="row">
 					<div class="col-12 col-md-4 col-lg-3 mb-5">
 						<a class="product-item" href="#">
-							<img src="Assets/images/product-3.png" class="img-fluid product-thumbnail"/>
+							<img src="https://www.freepnglogos.com/uploads/furniture-png/furniture-png-transparent-furniture-images-pluspng-15.png" class="img-fluid product-thumbnail"/>
 							<h3 class="product-title">Nordic Chair</h3>
 							<strong class="product-price">$50.00</strong>
 
