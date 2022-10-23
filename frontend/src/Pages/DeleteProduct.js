@@ -20,4 +20,4 @@ const DeleteProduct = () => {
   )
 }
 
-export default DeleteProduct
+export default DeleteProductS
