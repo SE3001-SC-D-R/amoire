@@ -1,46 +1,52 @@
-import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
-import update from './images/update.png';
-import del from './images/del.png';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 
+import update from './images/update.png';
+import del from './images/del.png';
 
 export default function ProductCatalog() {
+
+	const [products, setProducts] = useState([{}])
 
 	let navigate = useNavigate();
 	function addProduct() {
 			navigate('/adding')
-	}
+	 }
+	 function deleteProduct(id){
+		Axios.delete(`delete/${id}`)
+		navigate('/delete')
+	 }
+	 function updateProduct(){
+		navigate('/update')
+	 }
 
-	const [products, setProducts] = useState([{}])
 	
-	useEffect(() => {
+	const listProducts = async () => {
+		const response = await Axios('/getProducts');
+		setProducts(response.data)
+	};
+	
+	listProducts();
 
-		const axiosProd = async () => {
-			const response = await Axios('/getProducts');
-			setProducts(response.data)
-		};
-		axiosProd();
-  	}, []);
-
-				const useProducts = products.map((Product)=>{
+	const useProducts = products.map((Product)=>{
 
                     return (
-        					<div class="untree_co-section product-section before-footer-section">
-		    					<div class="container">
-										<div class="col-12 col-md-4 col-lg-3 mb-5">
-											<a class="product-item" href="#">
-											<img src={Product.selectedImage} class="img-fluid product-thumbnail"/>
-											<h3 class="product-title">{Product.Name}</h3>
-											<strong class="product-price">{Product.Price}</strong>
-                                            
+        					<div className="untree_co-section product-section before-footer-section">
+		    					<div className="container">
+										<div className="col-12 col-md-4 col-lg-3 mb-5">
+											<a className="product-item" href="#">
+											<img src={Product.selectedImage} className="img-fluid product-thumbnail"/>
+											<h3 className="product-title">{Product.Name}</h3>
+											<strong className="product-price">{Product.Price}</strong>
+                                            <p>{Product.Description}</p>
 							
-											<span class="icon-cross">
-												<img src={update} class="img-fluid"/>
+											<span className="icon-cross">
+												<img src={update} className="img-fluid"/>
 											</span>
-							
-                            				<span class="icon-del">
-												<img src={del} class="img-fluid"/>
+						
+                            				<span className="icon-del" onClick={() => deleteProduct(Product._id)}>
+												<img src={del} className="img-fluid"/>
 											</span>
 											</a>
 										</div> 
@@ -49,11 +55,11 @@ export default function ProductCatalog() {
                       );
 				})
 
-				return(
-					<>
-					<button className = "button" onClick={addProduct}>Add New Product</button>
+	return(
+		<React.Fragment>
+				<button className = "button" onClick={addProduct}>Add New Product</button>
 					<br></br>
-					{useProducts}
-					</>
-				)
+				{useProducts}
+		</React.Fragment>
+		)
 }
