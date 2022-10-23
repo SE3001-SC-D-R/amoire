@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 
-const Adding = () => {
+function goBack(){
+	window.location = '/'
+}
 
+export default function AddProduct () {
+	
     const[product, setProduct] = useState({
         Name: "",
 		url: "",
@@ -52,10 +56,11 @@ const Adding = () => {
         })
     }
 
-
-
     return (
         <React.Fragment>
+		
+		<button className = "button" onClick={goBack}> Return to Home </button>
+		
 
 		<div className="untree_co-section">
 		    <div className="container">
@@ -65,16 +70,16 @@ const Adding = () => {
 		          <div className="p-3 p-lg-5 border bg-white">
 		            <div className="form-group row">
 		              <div className="col-md-12">
-		                <label for="c_address" className="text-black">Product Name <span className="text-danger">*</span></label>
+		                <label htmlFor="c_address" className="text-black">Product Name <span className="text-danger">*</span></label>
 		                <input type="text" className="form-control" id="c_address" name="Name" value={product.Name} required onChange={handleChange} placeholder="Enter the name of your product"/>
 		              </div>
 		            </div>
 
 					<br></br>
 
-					<div class="dropdown">
-  						<button class="dropbtn">Product Category</button>
- 						 <div class="dropdown-content">
+					<div className="dropdown">
+  						<button className="dropbtn">Product Category</button>
+ 						 <div className="dropdown-content">
   						  	<a href="#">Seating</a>
     						<a href="#">Dining</a>
     						<a href="#">Decorational</a>
@@ -86,12 +91,12 @@ const Adding = () => {
 					
 		            <div className="form-group row">
 		              <div className="col-md-6">
-		                <label for="c_state_country" className="text-black">Product Price <span className="text-danger">*</span></label>
+		                <label htmlFor="c_state_country" className="text-black">Product Price <span className="text-danger">*</span></label>
 		                <input type="text" className="form-control" id="c_state_country" name="Price" value={product.Price} required 
                     onChange={handleChange}/>
 		              </div>
 		              <div className="col-md-6">
-		                <label for="c_postal_zip" className="text-black">Product Stock <span className="text-danger">*</span></label>
+		                <label htmlFor="c_postal_zip" className="text-black">Product Stock <span className="text-danger">*</span></label>
 		                <input type="text" className="form-control" id="c_postal_zip"name="stock" value={product.stock} required 
                     onChange={handleChange}/>
 		              </div>
@@ -101,7 +106,7 @@ const Adding = () => {
 
 					<div className="form-group row">
 		              <div className="col-md-12">
-		                <label for="c_address" className="text-black">Product Image URL <span className="text-danger">*</span></label>
+		                <label htmlFor="c_address" className="text-black">Product Image URL <span className="text-danger">*</span></label>
 		                <input type="text" className="form-control" id="c_address"  placeholder="Enter the name of your product" name="url" value={product.url} required 
                     onChange={handleChange}/>
 		              </div>
@@ -110,7 +115,7 @@ const Adding = () => {
 					<br></br>
 
 		            <div className="form-group">
-		              <label for="c_order_notes" className="text-black">Description</label>
+		              <label htmlFor="c_order_notes" className="text-black">Description</label>
 		              <textarea id="c_order_notes" cols="30" rows="5" className="form-control"name="Description" value={product.Description} required 
                     onChange={handleChange} placeholder="Enter product description here..."></textarea>
 		            </div>
@@ -122,11 +127,11 @@ const Adding = () => {
 			<button className="buttons" onClick={handleSubmit}>Add to Inventory</button>
 		  </div>
 
-		  <footer class="footer-section">
-			<div class="container relative">
+		  <footer className="footer-section">
+			<div className="container relative">
 
-				<div class="sofa-img">
-					<img src="Assets/images/sofa.png" alt="Image" class="img-fluid"/>
+				<div className="sofa-img">
+					<img src="Assets/images/sofa.png" alt="Image" className="img-fluid"/>
 				</div>
 			</div>
 		</footer>
@@ -137,5 +142,3 @@ const Adding = () => {
         </React.Fragment>
     )
 }
-
-export default Adding
