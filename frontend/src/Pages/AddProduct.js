@@ -61,7 +61,6 @@ export default function AddProduct () {
 		
 		<button className = "button" onClick={goBack}> Return to Home </button>
 		
-
 		<div className="untree_co-section">
 		    <div className="container">
 		      <div className="row">
