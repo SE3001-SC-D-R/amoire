@@ -23,18 +23,10 @@ productRouter.post('/', (req, res) => {
   .catch(err => res.status(400).json('Error: '+err))
 })
 
-productRouter.delete('/delete/:id', (req, res) => {
+productRouter.route('/delete/:id').delete((req, res) => {
   Product.findByIdAndDelete(req.params.id)
   .then(() => res.json('Products deleted'))
   .catch(err => res.status(400).json('Error: '+err))
 })
-
-productRouter.put('/:id', (req, res) => {
-  Product.findByIdAndUpdate(req.params.id,
-      {$set: req.body})
-  .then(() => res.json('Product updated'))
-  .catch(err => res.status(400).json('Error: '+err))
-})
-
 
 export default productRouter;

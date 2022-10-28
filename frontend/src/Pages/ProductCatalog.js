@@ -1,15 +1,18 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 
+//Static images for page design
 import update from './images/update.png';
 import del from './images/del.png';
+import axios from 'axios';
 
 export default function ProductCatalog() {
 
 	const [products, setProducts] = useState([{}])
 
 	let navigate = useNavigate();
+
 	function addProduct() {
 			navigate('/adding')
 	 }
@@ -17,10 +20,23 @@ export default function ProductCatalog() {
 		Axios.delete(`delete/${id}`)
 		navigate('/delete')
 	 }
-	 function updateProduct(){
-		navigate('/update')
-	 }
+	 function updateProduct(Product){
+		let Name = prompt("Please enter updated product name, or press OK:",Product.Name);
+		let Description = prompt("Please enter udated description:",Product.Description);
+		let Price = prompt("Please enter updated price:",Product.Price);
+		let Stock = prompt("Please enter updated stock quantity:",Product.stock);
+		let selectedImage = prompt("Please enter updated image address:",Product.selectedImage);
 
+		axios.put('/update/'+Product._id, {
+			Name,
+			Description,
+			Price,
+			Stock,
+			selectedImage
+		})
+
+        navigate('/updated')
+	 }
 	
 	const listProducts = async () => {
 		const response = await Axios('/getProducts');
@@ -41,7 +57,7 @@ export default function ProductCatalog() {
 											<strong className="product-price">{Product.Price}</strong>
                                             <p>{Product.Description}</p>
 							
-											<span className="icon-cross">
+											<span className="icon-cross" onClick={() => updateProduct(Product)}>
 												<img src={update} className="img-fluid"/>
 											</span>
 						
