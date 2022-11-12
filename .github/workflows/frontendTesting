@@ -1,5 +1,6 @@
 name: frontendTesting
-on: push
+run-name: ${{ github.actor }} is testing frontend
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
