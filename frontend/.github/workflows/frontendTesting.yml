@@ -1,13 +1,11 @@
-name: frontendTesting
+name: CI
 on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      - run: npm ci
-      - run: npm test
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: yarn
+    - name: Run tests
+      run: yarn test
