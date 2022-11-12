@@ -19,4 +19,5 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
+      - run: cd frontend
       - run: npm test
