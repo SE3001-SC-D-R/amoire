@@ -59,17 +59,17 @@ export default function AddProduct () {
     return (
         <React.Fragment>
 		
-		<button className = "button" onClick={goBack}> Return to Home </button>
+		<button className="button" onClick={goBack}> Return to Home </button>
 		
-		<div className="untree_co-section">
+		<div data-testid="addForm" className="untree_co-section">
 		    <div className="container">
 		      <div className="row">
 		        <div className="col-md-6 mb-5 mb-md-0">
 		          <h2 className="h3 mb-3 text-black">Add Product Details</h2>
-		          <div className="p-3 p-lg-5 border bg-white">
+		          <div className="bg-white border p-3 p-lg-5">
 		            <div className="form-group row">
 		              <div className="col-md-12">
-		                <label htmlFor="c_address" className="text-black">Product Name <span className="text-danger">*</span></label>
+		                <label htmlFor="c_address" data-testid="nameHeading" className="text-black">Product Name <span className="text-danger">*</span></label>
 		                <input type="text" className="form-control" id="c_address" name="Name" value={product.Name} required onChange={handleChange} placeholder="Enter the name of your product"/>
 		              </div>
 		            </div>
@@ -105,7 +105,7 @@ export default function AddProduct () {
 
 					<div className="form-group row">
 		              <div className="col-md-12">
-		                <label htmlFor="c_address" className="text-black">Product Image URL <span className="text-danger">*</span></label>
+		                <label htmlFor="c_address" data-testid="urlHeading" className="text-black">Product Image URL <span className="text-danger">*</span></label>
 		                <input type="text" className="form-control" id="c_address"  placeholder="Enter the name of your product" name="url" value={product.url} required 
                     onChange={handleChange}/>
 		              </div>
@@ -114,7 +114,7 @@ export default function AddProduct () {
 					<br></br>
 
 		            <div className="form-group">
-		              <label htmlFor="c_order_notes" className="text-black">Description</label>
+		              <label htmlFor="c_order_notes" data-testid="descHeading" className="text-black">Description</label>
 		              <textarea id="c_order_notes" cols="30" rows="5" className="form-control"name="Description" value={product.Description} required 
                     onChange={handleChange} placeholder="Enter product description here..."></textarea>
 		            </div>

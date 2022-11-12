@@ -48,9 +48,9 @@ export default function ProductCatalog() {
 	const useProducts = products.map((Product)=>{
 
                     return (
-        					<div className="untree_co-section product-section before-footer-section">
+        					<div data-testid="renderProductList" className="before-footer-section product-section untree_co-section">
 		    					<div className="container">
-										<div className="col-12 col-md-4 col-lg-3 mb-5">
+										<div className="col-12 col-lg-3 col-md-4 mb-5">
 											<a className="product-item" href="#">
 											<img src={Product.selectedImage} className="img-fluid product-thumbnail"/>
 											<h3 className="product-title">{Product.Name}</h3>
@@ -73,7 +73,7 @@ export default function ProductCatalog() {
 
 	return(
 		<React.Fragment>
-				<button className = "button" onClick={addProduct}>Add New Product</button>
+				<button className = "button" data-testid="addnewpage" onClick={addProduct}>Add New Product</button>
 					<br></br>
 				{useProducts}
 		</React.Fragment>

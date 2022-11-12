@@ -11,7 +11,7 @@ import EditProduct from './Pages/EditProduct';
 
 function App() {
   return (
-    <div className="App" >
+    <div data-testid="checkingLandingPageRender" className="App" >
       <Bar/>
       <BrowserRouter>
         <Routes>
