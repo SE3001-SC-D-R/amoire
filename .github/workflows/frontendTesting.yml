@@ -4,6 +4,9 @@ on: [push]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -11,6 +14,5 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - working-directory: ./frontend
       - run: npm ci
       - run: npm run test
