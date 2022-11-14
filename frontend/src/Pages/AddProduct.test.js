@@ -8,19 +8,25 @@ test('Entire `Add Product` Form is rendered', () => {
     expect(linkElement).toBeInTheDocument();
   });
 
-  test('Displaying right form details', () => {
+  test('Displaying significant heading', () => {
     render(<AddProduct />);
 
     const productName = screen.getByTestId("nameHeading")
     expect(productName).toHaveTextContent("Product Name")
+  });
 
+  test('Displaying larger text boxes', () => {
+    render(<AddProduct />);
     const productDescription = screen.getByTestId("descHeading")
     expect(productDescription).toHaveTextContent("Description")
+  });
 
+
+  test('Validating URL input box', () => {
+    render(<AddProduct />);
     const productURL = screen.getByTestId("urlHeading")
     expect(productURL).toHaveTextContent("Product Image URL")
   });
-
 
 describe('Mocking useNavigate()', () => {
   test('Testing useNavigate() by mocking', () => {
