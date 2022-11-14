@@ -11,6 +11,6 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - run: cd /home/runner/work/armoire/armoire/frontend
+      - working-directory: ./frontend
       - run: npm ci
       - run: npm run test
