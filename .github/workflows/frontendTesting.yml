@@ -2,7 +2,7 @@ name: frontendTesting
 run-name: ${{ github.actor }} is testing her frontend
 on: [push]
 jobs:
-  check-bats-version:
+  run-defined-frontend-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -12,7 +12,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
       - run: npm ci
       - run: npm run test
