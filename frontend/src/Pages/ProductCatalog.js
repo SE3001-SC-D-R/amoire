@@ -73,7 +73,7 @@ export default function ProductCatalog() {
 
 	return(
 		<React.Fragment>
-				<button className = "button" data-testid="addnewpage" onClick={addProduct}>Add New Product</button>
+				<button className="button" data-testid="addnewpage" onClick={addProduct}>Add New Product</button>
 					<br></br>
 				{useProducts}
 		</React.Fragment>
